@@ -4,7 +4,11 @@
   "description": "Kludgy fast npm searcher",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+      "test": "mocha -R dot",
+      "lint": "jslint --terse --edition=latest **/*.js",
+      "cover": "istanbul cover --root lib --print=both _mocha -- -R dot",
+      "check-coverage": "istanbul check-coverage --statements 100 --functions 100 --branches 100 --lines 100",
+      "check": "npm run-script lint && npm run-script test && npm run-script cover && npm run-script check-coverage"
   },
   "repository": {
     "type": "git",
