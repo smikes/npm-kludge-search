@@ -2,13 +2,13 @@
   "name": "npm-kludge-search",
   "version": "1.0.0",
   "description": "Kludgy fast npm searcher",
-  "main": "index.js",
+  "main": "bin/search.js",
   "scripts": {
-      "test": "mocha -R dot",
-      "lint": "jslint --terse --edition=latest **/*.js",
-      "cover": "istanbul cover --root lib --print=both _mocha -- -R dot",
-      "check-coverage": "istanbul check-coverage --statements 100 --functions 100 --branches 100 --lines 100",
-      "check": "npm run-script lint && npm run-script test && npm run-script cover && npm run-script check-coverage"
+    "test": "mocha -R dot",
+    "lint": "jslint --terse --edition=latest lib/*.js test/*.js bin/*.js",
+    "cover": "istanbul cover --root lib --print=both _mocha -- -R dot",
+    "check-coverage": "istanbul check-coverage --statements 100 --functions 100 --branches 100 --lines 100",
+    "check": "npm run-script lint && npm run-script test && npm run-script cover && npm run-script check-coverage"
   },
   "repository": {
     "type": "git",
@@ -19,7 +19,7 @@
     "search",
     "fast"
   ],
-  "author": "",
+  "author": "Sam Mikes <smikes@cubane.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/smikes/npm-kludge-search/issues"
@@ -28,7 +28,14 @@
   "devDependencies": {
     "istanbul": "^0.3.2",
     "jslint": "^0.6.5",
+    "json-tokenizer": "^1.0.0",
     "mocha": "^2.0.1",
-    "sqlite3": "^3.0.2"
+    "sqlite3": "^3.0.2",
+    "tokenizer": "^1.1.2"
+  },
+  "dependencies": {
+    "JSONStream": "^0.10.0",
+    "event-stream": "^3.1.7",
+    "through": "^2.3.6"
   }
 }
