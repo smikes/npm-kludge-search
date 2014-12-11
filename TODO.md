@@ -4,3 +4,4 @@
 * refactor
 * add color and highlighting
 * make completions work
+* make sqlite able to read & use gzipped database
