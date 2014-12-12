@@ -1,5 +1,4 @@
 "use strict";
-/*global describe, it, afterEach*/
 
 var assert = require('assert'),
     populateDb = require('../lib/populateDb'),
@@ -8,31 +7,52 @@ var assert = require('assert'),
     samplePackage = {
         name: 'package',
         description: 'blah blah foobar',
-        author: 'Near Perfect Memory',
-        date: '2014-04-01T14:21:13',
+        maintainers: [ {name: 'blither' } ],
+        versions: { '1.0.0': 'latest' },
+        time: { modified: '2014-04-01T14:21:13' },
         keywords: 'test, sample',
         url: 'https://github.org/nobody/package/'
     };
 
+var Code = require('code');
+var Lab = require('lab');
+var lab = exports.lab = Lab.script();
+
+var describe = lab.describe;
+var it = lab.it;
+var before = lab.before;
+var after = lab.after;
+var expect = Code.expect;
+
 function cleanup(done) {
     getDb(testDB, function (err, db) {
-        assert.equal(null, err);
+        expect(err).to.equal(null);
         db.run("DELETE FROM package;");
         done();
     });
 }
 
+describe('cleanup objects', function () {
+    it('gracefully handles missing members', function (done) {
+        var db = populateDb({prepare: function () {}});
+
+        var p = db.cleanPackage({});
+        
+        done();
+    });
+});
+
 describe('populate db', function () {
-    beforeEach(function (done) {
+    lab.beforeEach(function (done) {
         cleanup(done);
     });
-    afterEach(function (done) {
+    lab.afterEach(function (done) {
         cleanup(done);
     });
 
     it('can add a record', function (done) {
         getDb(testDB, function (err, db) {
-            assert.equal(null, err);
+            expect(err).to.equal(null);
             // wrap db
             db = populateDb(db);
 
@@ -40,7 +60,6 @@ describe('populate db', function () {
 
             db.findByName('package', function (err, row) {
                 assert.equal(null, err);
-
                 assert.equal(row.name, 'package');
             }, done);
         });

@@ -4,11 +4,8 @@
   "description": "Kludgy fast npm searcher",
   "main": "bin/search.js",
   "scripts": {
-    "test": "mocha -R dot",
-    "lint": "jslint --terse --edition=latest lib/*.js test/*.js bin/*.js",
-    "cover": "istanbul cover --root lib --print=both _mocha -- -R dot",
-    "check-coverage": "istanbul check-coverage --statements 100 --functions 100 --branches 100 --lines 100",
-    "check": "npm run-script lint && npm run-script test && npm run-script cover && npm run-script check-coverage"
+    "test": "lab -lct 100",
+    "cover": "lab -lc -r html -o coverage/report.html"
   },
   "repository": {
     "type": "git",
@@ -26,10 +23,9 @@
   },
   "homepage": "https://github.com/smikes/npm-kludge-search",
   "devDependencies": {
-    "istanbul": "^0.3.2",
-    "jslint": "^0.6.5",
+    "code": "^1.2.1",
     "json-tokenizer": "^1.0.0",
-    "mocha": "^2.0.1",
+    "lab": "^5.1.0",
     "sqlite3": "^3.0.2",
     "tokenizer": "^1.1.2"
   },
