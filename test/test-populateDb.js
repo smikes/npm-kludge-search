@@ -1,10 +1,10 @@
-"use strict";
+'use strict';
 
-var assert = require('assert'),
-    populateDb = require('../lib/populateDb'),
+var populateDb = require('../lib/populateDb'),
     getDb = require('../lib/getDb'),
-    testDB = "./test.sqlite",
-    samplePackage = {
+    testDB = './test.sqlite';
+
+var samplePackage = {
         name: 'package',
         description: 'blah blah foobar',
         maintainers: [ {name: 'blither' } ],
@@ -27,7 +27,7 @@ var expect = Code.expect;
 function cleanup(done) {
     getDb(testDB, function (err, db) {
         expect(err).to.equal(null);
-        db.run("DELETE FROM package;");
+        db.run('DELETE FROM package;');
         done();
     });
 }
@@ -59,8 +59,8 @@ describe('populate db', function () {
             db.addPackage(samplePackage);
 
             db.findByName('package', function (err, row) {
-                assert.equal(null, err);
-                assert.equal(row.name, 'package');
+                expect(err).to.equal(null);
+                expect(row.name).to.equal('package');
             }, done);
         });
 
@@ -68,7 +68,7 @@ describe('populate db', function () {
 
     it('misses missing records', function (done) {
         getDb(testDB, function (err, db) {
-            assert.equal(null, err);
+            expect(err).to.equal(null);
             // wrap db
             db = populateDb(db);
 
@@ -82,8 +82,8 @@ describe('populate db', function () {
             db.addPackage(samplePackage);
 
             db.findByAuthor('Perfect', function (err, row) {
-                assert.equal(err, null);
-                assert.equal(row.name, 'package');
+                expect(err).to.equal(null);
+                expect(row.name).to.equal('package');
             }, done);
         });
     });
@@ -94,8 +94,8 @@ describe('populate db', function () {
             db.addPackage(samplePackage);
 
             db.findFTS('foobar', function (err, row) {
-                assert.equal(err, null);
-                assert.equal(row.name, 'package');
+                expect(err).to.equal(null);
+                expect(row.name).to.equal('package');
             }, done);
         });
     });

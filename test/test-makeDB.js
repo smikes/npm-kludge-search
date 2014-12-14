@@ -1,9 +1,7 @@
-"use strict";
-/*global describe, it*/
+'use strict';
 
-var assert = require('assert'),
-    makeDb = require('../lib/makeDb'),
-    testDB = "./test.sqlite";
+var makeDb = require('../lib/makeDb'),
+    testDB = './test.sqlite';
 
 var Code = require('code');
 var Lab = require('lab');
@@ -18,13 +16,12 @@ var expect = Code.expect;
 describe('makedb', function () {
     it('makes a database', function (done) {
         makeDb(testDB, function (err, db) {
-            assert.equal(err, null);
+            expect(err).to.equal(null);
 
-            db.all("SELECT COUNT(*) AS count FROM package;", function (err, result) {
-                assert.equal(err, null);
+            db.all('SELECT COUNT(*) AS count FROM package;', function (err, result) {
+                expect(err).to.equal(null);
 
-
-                assert.equal(result[0].count, 0);
+                expect(result[0].count).to.equal(0);
                 done();
             });
         });
@@ -32,12 +29,12 @@ describe('makedb', function () {
 
     it('has no error if package already exists', function (done) {
         makeDb(testDB, function (err, db) {
-            assert.equal(err, null);
+            expect(err).to.equal(null);
 
-            db.all("SELECT COUNT(*) AS count FROM package;", function (err, result) {
-                assert.equal(err, null);
+            db.all('SELECT COUNT(*) AS count FROM package;', function (err, result) {
+                expect(err).to.equal(null);
 
-                assert.equal(result[0].count, 0);
+                expect(result[0].count).to.equal(0);
                 done();
             });
         });

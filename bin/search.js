@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-"use strict";
+'use strict';
 
-var search = require("../lib/search");
+var search = require('../lib/search');
 
 // todo - some command line parsing
 search(process.argv[2]);

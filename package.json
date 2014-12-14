@@ -4,8 +4,8 @@
   "description": "Kludgy fast npm searcher",
   "main": "bin/search.js",
   "scripts": {
-    "test": "lab -lct 100",
-    "cover": "lab -lc -r html -o coverage/report.html"
+    "test": "lab -Lct 100",
+    "cover": "lab -Lc -r html -o coverage/report.html"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
   "homepage": "https://github.com/smikes/npm-kludge-search",
   "devDependencies": {
     "code": "^1.2.1",
+    "jslint": "^0.6.6",
     "json-tokenizer": "^1.0.0",
     "lab": "^5.1.0",
     "sqlite3": "^3.0.2",
