@@ -4,8 +4,9 @@
   "description": "Kludgy fast npm searcher",
   "main": "bin/search.js",
   "scripts": {
-    "test": "lab -Lct 100",
-    "cover": "lab -Lc -r html -o coverage/report.html"
+    "lint": "jslint --terse *.js */*.js",
+    "test": "lab -ct 100",
+    "cover": "lab -c -r html -o coverage/report.html"
   },
   "repository": {
     "type": "git",
