@@ -4,4 +4,4 @@
 var populate = require('../lib/populate');
 
 // todo - some command line parsing
-populate(process.argv[2]);
+populate(process.argv[2], process.argv[3]);

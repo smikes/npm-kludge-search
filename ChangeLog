@@ -1,0 +1,8 @@
+2015-01-11  Sam Mikes  <smikes@Svarog.local>
+
+	* lib/populate.js: 2nd arg `from` specifies which json file to
+	populate DB from; allows speed testing with subsets of
+	npm-all-cache.json
+
+	
+
