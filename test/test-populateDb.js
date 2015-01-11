@@ -29,6 +29,7 @@ function cleanup(done) {
     getDb(testDB, function (err, db) {
         expect(err).to.equal(null);
         db.run('DELETE FROM package;');
+        db.run('DELETE FROM package_fts;');
         done();
     });
 }
@@ -79,19 +80,26 @@ describe('populate db', function () {
 
     it('can find by author', function (done) {
         getDb(testDB, function (err, db) {
+            var rows = 0;
             expect(err).to.equal(null);
             db = populateDb(db);
             db.addPackage(samplePackage);
 
-            db.findByAuthor('Perfect', function (err, row) {
+            db.findByAuthor('=blither', function (err, row) {
                 expect(err).to.equal(null);
                 expect(row.name).to.equal('package');
-            }, done);
+                rows += 1;
+            }, function (err) {
+                expect(err).to.equal(null);
+                expect(rows).to.equal(1);
+                done();
+            });
         });
     });
 
     it('can find by fts', function (done) {
         getDb(testDB, function (err, db) {
+            var rows = 0;
             expect(err).to.equal(null);
             db = populateDb(db);
             db.addPackage(samplePackage);
@@ -99,7 +107,13 @@ describe('populate db', function () {
             db.findFTS('foobar', function (err, row) {
                 expect(err).to.equal(null);
                 expect(row.name).to.equal('package');
-            }, done);
+                rows += 1;
+            }, function (err) {
+                expect(err).to.equal(null);
+                expect(rows).to.equal(1);
+
+                done();
+            });
         });
     });
 });
