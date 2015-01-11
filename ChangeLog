@@ -1,5 +1,7 @@
 2015-01-11  Sam Mikes  <smikes@Svarog.local>
 
+	* lib/searchDb.js: use `nopt` for options parsing
+
 	* lib/fts.js: factor trimit, expose trimit and angleize for testing
 	uniquify words sent to FTS index
 
