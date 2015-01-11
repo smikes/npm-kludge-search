@@ -28,7 +28,6 @@
     "jslint": "^0.6.6",
     "json-tokenizer": "^1.0.0",
     "lab": "^5.1.0",
-    "sqlite3": "^3.0.2",
     "tokenizer": "^1.1.2"
   },
   "dependencies": {
