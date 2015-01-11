@@ -28,8 +28,6 @@ var expect = Code.expect;
 function cleanup(done) {
     getDb(testDB, function (err, db) {
         expect(err).to.equal(null);
-        db.run('DELETE FROM package;');
-        db.run('DELETE FROM package_fts;');
         done();
     });
 }
@@ -78,20 +76,12 @@ describe('populate db', function () {
         });
     });
 
-    it('can find by author', function (done) {
+    it('can freeze db', function (done) {
         getDb(testDB, function (err, db) {
-            var rows = 0;
             expect(err).to.equal(null);
-            db = populateDb(db);
-            db.addPackage(samplePackage);
 
-            db.findByAuthor('=blither', function (err, row) {
+            db.freeze('test.pft', function (err) {
                 expect(err).to.equal(null);
-                expect(row.name).to.equal('package');
-                rows += 1;
-            }, function (err) {
-                expect(err).to.equal(null);
-                expect(rows).to.equal(1);
                 done();
             });
         });
@@ -102,14 +92,12 @@ describe('populate db', function () {
             var rows = 0;
             expect(err).to.equal(null);
             db = populateDb(db);
-            db.addPackage(samplePackage);
 
             db.findFTS('foobar', function (err, row) {
                 expect(err).to.equal(null);
-                expect(row.name).to.equal('package');
                 rows += 1;
             }, function (err) {
-                expect(err).to.equal(null);
+                expect(err).to.equal();
                 expect(rows).to.equal(1);
 
                 done();
