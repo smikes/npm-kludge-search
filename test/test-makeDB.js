@@ -10,8 +10,6 @@ exports.lab = lab;
 
 var describe = lab.describe;
 var it = lab.it;
-var before = lab.before;
-var after = lab.after;
 var expect = Code.expect;
 
 describe('makedb', function () {
