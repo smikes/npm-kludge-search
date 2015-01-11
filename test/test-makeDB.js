@@ -18,7 +18,7 @@ describe('makedb', function () {
             expect(err).to.equal(null);
 
             var result = db.search('');
-            
+
             expect(result).to.deep.equal([]);
             done();
         });
@@ -31,7 +31,7 @@ describe('makedb', function () {
             expect(err).to.equal(null);
 
             var result = db.search('');
-            
+
             expect(result).to.deep.equal([]);
             done();
         });

@@ -25,13 +25,6 @@ var before = lab.before;
 var after = lab.after;
 var expect = Code.expect;
 
-function cleanup(done) {
-    getDb(testDB, function (err, db) {
-        expect(err).to.equal(null);
-        done();
-    });
-}
-
 describe('cleanup objects', function () {
     it('gracefully handles missing members', function (done) {
         var db = populateDb({prepare: function () {return; }});
@@ -43,12 +36,6 @@ describe('cleanup objects', function () {
 });
 
 describe('populate db', function () {
-    lab.beforeEach(function (done) {
-        cleanup(done);
-    });
-    lab.afterEach(function (done) {
-        cleanup(done);
-    });
 
     it('can add a record', function (done) {
         getDb(testDB, function (err, db) {
@@ -93,7 +80,7 @@ describe('populate db', function () {
             expect(err).to.equal(null);
             db = populateDb(db);
 
-            db.findFTS('foobar', function (err, row) {
+            db.findFTS('foobar', function (err) {
                 expect(err).to.equal(null);
                 rows += 1;
             }, function (err) {
