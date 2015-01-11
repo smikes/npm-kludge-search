@@ -4,7 +4,7 @@
   "description": "Kludgy fast npm searcher",
   "main": "bin/search.js",
   "scripts": {
-    "lint": "jslint --terse *.js */*.js",
+    "lint": "jslint --edition=latest --terse *.js */*.js",
     "test": "lab -ct 100",
     "cover": "lab -c -r html -o coverage/report.html"
   },

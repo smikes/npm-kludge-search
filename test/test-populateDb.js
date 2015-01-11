@@ -35,7 +35,7 @@ function cleanup(done) {
 
 describe('cleanup objects', function () {
     it('gracefully handles missing members', function (done) {
-        var db = populateDb({prepare: function () {}});
+        var db = populateDb({prepare: function () {return; }});
 
         db.cleanPackage({});
 
@@ -79,6 +79,7 @@ describe('populate db', function () {
 
     it('can find by author', function (done) {
         getDb(testDB, function (err, db) {
+            expect(err).to.equal(null);
             db = populateDb(db);
             db.addPackage(samplePackage);
 
@@ -91,6 +92,7 @@ describe('populate db', function () {
 
     it('can find by fts', function (done) {
         getDb(testDB, function (err, db) {
+            expect(err).to.equal(null);
             db = populateDb(db);
             db.addPackage(samplePackage);
 
