@@ -37,3 +37,4 @@ $ node ./bin/search-db.js <term>
 
 The search term is full-text matched using sqlite3 `match` over all of (name,
 description, author, keywords).
+
