@@ -80,8 +80,9 @@ describe('populate db', function () {
             expect(err).to.equal(null);
             db = populateDb(db);
 
-            db.findFTS('foobar', function (err) {
+            db.findFTS('foobar', function (err, val) {
                 expect(err).to.equal(null);
+                expect(val.name).to.equal('package');
                 rows += 1;
             }, function (err) {
                 expect(err).to.equal();

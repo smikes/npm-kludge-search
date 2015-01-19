@@ -17,10 +17,13 @@ describe('makedb', function () {
         makeDb(testDB, function (err, db) {
             expect(err).to.equal(null);
 
-            var result = db.search('');
-
-            expect(result).to.deep.equal([]);
-            done();
+            var callCount = 0;
+            db.search('', function () {
+                callCount += 1;
+            }, function () {
+                expect(callCount).to.equal(0);
+                done();
+            });
         });
     });
 });
@@ -30,10 +33,13 @@ describe('makedb', function () {
         makeDb('invalid-name', function (err, db) {
             expect(err).to.equal(null);
 
-            var result = db.search('');
-
-            expect(result).to.deep.equal([]);
-            done();
+            var callCount = 0;
+            db.search('', function () {
+                callCount += 1;
+            }, function () {
+                expect(callCount).to.equal(0);
+                done();
+            });
         });
     });
 });
