@@ -2,7 +2,8 @@
 
 var populateDb = require('../lib/populateDb'),
     getDb = require('../lib/getDb'),
-    testDB = './test.sqlite';
+    makeDb = require('../lib/makeDb'),
+    testDB = './test.pft';
 
 var samplePackage = {
         name: 'package',
@@ -14,6 +15,7 @@ var samplePackage = {
         url: 'https://github.org/nobody/package/'
     };
 
+var rimraf = require('rimraf');
 var Code = require('code');
 var Lab = require('lab');
 var lab = Lab.script();
@@ -21,8 +23,6 @@ exports.lab = lab;
 
 var describe = lab.describe;
 var it = lab.it;
-var before = lab.before;
-var after = lab.after;
 var expect = Code.expect;
 
 describe('cleanup objects', function () {
@@ -36,6 +36,10 @@ describe('cleanup objects', function () {
 });
 
 describe('populate db', function () {
+
+    lab.after(function (done) {
+        rimraf(testDB, done);
+    });
 
     it('can add a record', function (done) {
         getDb(testDB, function (err, db) {
@@ -53,8 +57,19 @@ describe('populate db', function () {
 
     });
 
-    it('misses missing records', function (done) {
+    it('can freeze db', function (done) {
         getDb(testDB, function (err, db) {
+            expect(err).to.equal(null);
+
+            db.freeze(testDB, function (err) {
+                expect(err).to.equal(null);
+                done();
+            });
+        });
+    });
+
+    it('misses missing records', function (done) {
+        makeDb(testDB, function (err, db) {
             expect(err).to.equal(null);
             // wrap db
             db = populateDb(db);
@@ -63,19 +78,8 @@ describe('populate db', function () {
         });
     });
 
-    it('can freeze db', function (done) {
-        getDb(testDB, function (err, db) {
-            expect(err).to.equal(null);
-
-            db.freeze('test.pft', function (err) {
-                expect(err).to.equal(null);
-                done();
-            });
-        });
-    });
-
     it('can find by fts', function (done) {
-        getDb(testDB, function (err, db) {
+        makeDb(testDB, function (err, db) {
             var rows = 0;
             expect(err).to.equal(null);
             db = populateDb(db);
