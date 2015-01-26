@@ -29,6 +29,7 @@
     "jslint": "^0.6.6",
     "json-tokenizer": "^1.0.0",
     "lab": "^5.2.0",
+    "rimraf": "^2.2.8",
     "tokenizer": "^1.1.2"
   },
   "dependencies": {
@@ -37,6 +38,6 @@
     "event-stream": "^3.1.7",
     "hoek": "^2.11.0",
     "nopt": "^3.0.1",
-    "pure-fts": "^2.2.0"
+    "pure-fts": "^3.0.1"
   }
 }
