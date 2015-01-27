@@ -1,2 +1,5 @@
 *.pft
 *.json
+*.zip
+*~
+*.sqlite
