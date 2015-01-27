@@ -3,11 +3,13 @@
   "version": "2.4.3",
   "description": "Kludgy fast npm searcher",
   "main": "bin/search.js",
+  "bin": "./bin/search-db.js",
   "scripts": {
     "populate": "node ./bin/populate.js",
     "search": "node ./bin/search-db.js",
     "test": "lab -ct 95 -L -n jslint",
-    "cover": "lab -c -r html -o coverage/report.html"
+    "cover": "lab -c -r html -o coverage/report.html",
+    "postinstall": "./build-zip.sh"
   },
   "repository": {
     "type": "git",
