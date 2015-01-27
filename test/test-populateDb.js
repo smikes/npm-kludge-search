@@ -62,7 +62,7 @@ describe('populate db', function () {
             expect(err).to.equal(null);
 
             db.freeze(testDB, function (err) {
-                expect(err).to.equal(null);
+                expect(!err).to.equal(true);
                 done();
             });
         });
