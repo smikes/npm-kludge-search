@@ -75,6 +75,18 @@ $ time npm-kludge-search =substack |wc
 real	0m0.584s
 ```
 
+### Reporters
+
+There are currently three reporters: `slow` (the default), `fast`, and `json`.
+
+The `slow` reporter waits until all the results are returned and then formats
+them nicely in a table using `columnify`.
+
+The `fast` reporter emits a line at a time in fixed format.  Paradoxically, it
+is slightly slower than the `slow` reporter.
+
+The `json` reporter emits a stream of unformatted `JSON` objects.
+
 ### Advanced Search: Boolean Operators & Regular Expressions
 
 Not implemented yet.
@@ -118,7 +130,7 @@ This builds an uncompressed (directory) index; to build a one-file
 ### Search the database
 
 ```
-$ node ./bin/search-db.js [--db <name> || npmdb.pft] [--name <name> || <term>]
+$ node ./bin/search-db.js [--db <dbfile> || npmdb.pft] [--reporter <rep> || slow] [--name <name> || <term>]
 ```
 
 If `--name` (or `-n`) is specified, only an exact name search is performed.
@@ -164,9 +176,7 @@ When populating index, use streaming JSON.stringify and compression.
 Streaming output (currently all results are collected and analyzed to
 choose correct column widths)
 
-More than one output method.  The records are being retrieved from
-`Purefts` as objects, so a JSON reporter would be trivial.  Columns is
-what we get now.  CSV, others?
+Other reporters. CSV? Others?
 
 Maybe add more control over what is / is not removed from the `all`
 file when indexing.
