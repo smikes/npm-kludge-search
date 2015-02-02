@@ -11,6 +11,33 @@ $ npm i -g npm-kludge-search
 
 Please be patient -- downloading and building the index takes 3-4 minutes.
 
+## COMPLETION (experimental)
+
+You can get completion over package names.  This feature is experimental and only
+works for `bash` shell at present.
+
+```
+$ . <(npm-kluge-search --script)
+$ ni grunt-fi<TAB>
+```
+
+This should show you all 67 possibilities, from `grunt-figlet` to `grunt-fixtures2js`.
+
+The alias `ni` is short for `npm install`.  Making completion work for
+subcommands of `npm` is tricky; this is just a proof of concept.
+
+### Troubleshooting completion
+
+The syntax `. <(cmd)` does not work with `bash 3.2`, which is the standard shell
+on OSX.  If you have `brew`, you can get a newer version of bash:
+
+```
+$ brew install bash
+$ exec bash -l
+$ echo $BASH_VERSION
+4.3.33(1)-release
+```
+
 ## USE
 
 Now you have fast local searching.  For example, here is a worst-case
