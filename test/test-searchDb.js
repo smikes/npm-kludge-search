@@ -1,6 +1,7 @@
 'use strict';
 
 var searchDb = require('../lib/searchDb');
+var name = require('../lib/name');
 
 var makeNullReporter = require('../lib/reporters/null');
 
@@ -14,23 +15,6 @@ var it = lab.it;
 var expect = Code.expect;
 
 describe('searchDb', function () {
-    it('searches by name', function (done) {
-        var db = {
-            get: function (name, cb) {
-                cb(null, { name: name });
-            }
-        },
-            opts = {
-                name: 'bar',
-                reporter: makeNullReporter()
-            };
-
-
-        searchDb(db, opts, function () {
-            expect(opts.reporter.res).to.deep.equal([{ name: 'bar' }]);
-            done();
-        });
-    });
 
     it('searches single word fts', function (done) {
         var db = {
@@ -53,6 +37,24 @@ describe('searchDb', function () {
         });
     });
 
+    it('searches by name', function (done) {
+        var db = {
+            get: function (name, cb) {
+                cb(null, { name: name });
+            }
+        },
+            opts = {
+                name: 'bar',
+                reporter: makeNullReporter()
+            };
+
+
+        name(db, opts, function () {
+            expect(opts.reporter.res).to.deep.equal([{ name: 'bar' }]);
+            done();
+        });
+    });
+
     it('handles missing search by name', function (done) {
         var db = {
             get: function (name, cb) {
@@ -66,7 +68,7 @@ describe('searchDb', function () {
             };
 
 
-        searchDb(db, opts, function () {
+        name(db, opts, function () {
             expect(opts.reporter.res).to.deep.equal([]);
             done();
         });
