@@ -1,6 +1,6 @@
 'use strict';
 
-var searchDb = require('../lib/searchDb');
+var search = require('../lib/search');
 var name = require('../lib/name');
 
 var makeNullReporter = require('../lib/reporters/null');
@@ -14,7 +14,7 @@ var describe = lab.describe;
 var it = lab.it;
 var expect = Code.expect;
 
-describe('searchDb', function () {
+describe('search', function () {
 
     it('searches single word fts', function (done) {
         var db = {
@@ -31,7 +31,7 @@ describe('searchDb', function () {
             };
 
 
-        searchDb(db, opts, function () {
+        search(db, opts, function () {
             expect(opts.reporter.res).to.deep.equal([{ name: 'bar' }]);
             done();
         });
