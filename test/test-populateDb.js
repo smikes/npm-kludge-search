@@ -49,10 +49,11 @@ describe('populate db', function () {
 
             db.addPackage(samplePackage);
 
-            db.findByName('package', function (err, row) {
+            db.get('package', function (err, row) {
                 expect(err).to.equal(null);
                 expect(row.name).to.equal('package');
-            }, done);
+                done();
+            });
         });
 
     });
@@ -74,7 +75,10 @@ describe('populate db', function () {
             // wrap db
             db = populateDb(db);
 
-            db.findByName('missing', done, done);
+            db.get('missing', function (err) {
+                expect(err).to.be.instanceof(Error);
+                done();
+            });
         });
     });
 
@@ -84,7 +88,7 @@ describe('populate db', function () {
             expect(err).to.equal(null);
             db = populateDb(db);
 
-            db.findFTS('foobar', function (err, val) {
+            db.search('foobar', function (err, val) {
                 expect(err).to.equal(null);
                 expect(val.name).to.equal('package');
                 rows += 1;

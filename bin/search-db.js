@@ -1,7 +1,11 @@
 #!/usr/bin/env node
 'use strict';
 
-var searchDb = require('../lib/searchDb');
+var main = require('../lib/main');
 
-searchDb(process.argv[2], process.argv[3]);
+function justExit() {
+    process.exit(0);
+}
+
+main(process.argv, justExit);
 
