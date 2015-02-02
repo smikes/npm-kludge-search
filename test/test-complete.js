@@ -19,8 +19,10 @@ describe('complete', function () {
             e,
             db = {
                 findRange: function (start, end, cb, done) {
+                    /*jslint unparam: true*/
                     s = start;
                     e = end;
+                    cb(null, s);
                     done();
                 }
             },
@@ -31,8 +33,8 @@ describe('complete', function () {
 
         complete(db, opts, function () {
             expect(s).to.equal('foo');
-            expect(e > s).to.equal(true);
-            expect(e < 'fop').to.equal(true);
+            expect(e > s);
+            expect(e < 'fop');
             done();
         });
     });

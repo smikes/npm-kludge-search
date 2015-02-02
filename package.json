@@ -2,7 +2,7 @@
   "name": "npm-kludge-search",
   "version": "2.7.1",
   "description": "Kludgy fast npm searcher",
-  "main": "bin/search.js",
+  "main": "lib/main.js",
   "bin": "./bin/search-db.js",
   "scripts": {
     "populate": "node ./bin/populate.js",

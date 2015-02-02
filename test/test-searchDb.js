@@ -52,4 +52,24 @@ describe('searchDb', function () {
             done();
         });
     });
+
+    it('handles missing search by name', function (done) {
+        var db = {
+            get: function (name, cb) {
+                /*jslint unparam: true*/
+                cb(new Error('No object with name "fair"'));
+            }
+        },
+            opts = {
+                name: 'bar',
+                reporter: makeNullReporter()
+            };
+
+
+        searchDb(db, opts, function () {
+            expect(opts.reporter.res).to.deep.equal([]);
+            done();
+        });
+    });
+
 });
