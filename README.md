@@ -38,6 +38,33 @@ $ echo $BASH_VERSION
 4.3.33(1)-release
 ```
 
+## COMPLETION API (experimental)
+
+When you `require` npm-kludge-search as a module, it exposes one API function,
+`complete`:
+
+#### `complete( term, stream, done )`
+
+This will write each completion of `term` to `stream`.  After all completions
+are written, the callback `done` is called.
+
+**Example:**
+
+```
+var nks = require('npm-kludge-search');
+
+nks.complete('foo', process.stdout, function () {});
+```
+
+Writes the completions of `foo` to stdout:
+```
+foo
+foo-bar-baz
+...
+foounit
+```
+
+
 ## USE
 
 Now you have fast local searching.  For example, here is a worst-case

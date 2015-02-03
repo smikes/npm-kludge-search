@@ -2,6 +2,7 @@
 
 var populateDb = require('../lib/populateDb');
 var getDb = require('../lib/getDb');
+var main = require('../lib/main');
 
 var Code = require('code');
 var Lab = require('lab');
@@ -30,5 +31,22 @@ describe('cacheDb', function () {
             expect(db).to.equal(undefined);
             done();
         })(new Error("foo"));
+    });
+});
+
+function identity(x) {
+    return x;
+}
+
+describe('completeApi', function () {
+    it('completes packages', function (done) {
+        var s = {
+            write: identity,
+            end: identity
+        };
+
+        main.complete('foo', s, function () {
+            done();
+        });
     });
 });
