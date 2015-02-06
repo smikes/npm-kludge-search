@@ -1,6 +1,6 @@
 {
   "name": "npm-kludge-search",
-  "version": "2.9.1",
+  "version": "2.9.2",
   "description": "Kludgy fast npm searcher",
   "main": "lib/main.js",
   "bin": "./bin/search-db.js",
