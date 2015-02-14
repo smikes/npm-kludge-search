@@ -41,7 +41,7 @@ describe('populate db', function () {
         rimraf(testDB, done);
     });
 
-    it('can add a record', function (done) {
+    it('can add a record and freeze db', function (done) {
         getDb(testDB, function (err, db) {
             expect(err).to.equal(null);
             // wrap db
@@ -52,21 +52,16 @@ describe('populate db', function () {
             db.get('package', function (err, row) {
                 expect(err).to.equal(null);
                 expect(row.name).to.equal('package');
-                done();
+
+                db.freeze(testDB, function (err) {
+                    expect(!err).to.equal(true);
+                    done();
+                });
+
             });
+
         });
 
-    });
-
-    it('can freeze db', function (done) {
-        getDb(testDB, function (err, db) {
-            expect(err).to.equal(null);
-
-            db.freeze(testDB, function (err) {
-                expect(!err).to.equal(true);
-                done();
-            });
-        });
     });
 
     it('misses missing records', function (done) {

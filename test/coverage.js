@@ -24,16 +24,6 @@ describe('fixTime', function () {
     });
 });
 
-describe('cacheDb', function () {
-    it('handles errors', function (done) {
-        getDb.cacheDb('bar', function (err, db) {
-            expect(err).to.be.instanceof(Error);
-            expect(db).to.equal(undefined);
-            done();
-        })(new Error("foo"));
-    });
-});
-
 function identity(x) {
     return x;
 }
