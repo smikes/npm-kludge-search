@@ -9,7 +9,7 @@
     "search": "node ./bin/search-db.js",
     "test": "lab -ct 95 -L -n jslint",
     "cover": "lab -c -r html -o coverage/report.html",
-    "postinstall": "./build-zip.sh"
+    "publish-db": "build-zip.sh && cp npmdb.pft dist"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,7 @@
   "homepage": "https://github.com/smikes/npm-kludge-search",
   "devDependencies": {
     "code": "^1.2.1",
+    "gh-pages-deploy": "^0.3.0",
     "jslint": "^0.7.3",
     "lab": "^5.2.0",
     "rimraf": "^2.2.8"
@@ -39,5 +40,11 @@
     "hoek": "^2.11.0",
     "nopt": "^3.0.1",
     "pure-fts": "^3.2.1"
+  },
+  "gh-pages-deploy": {
+    "staticpath": "dist",
+    "prep": [
+      "publish-db"
+    ]
   }
 }
