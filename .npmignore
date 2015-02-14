@@ -3,3 +3,4 @@
 *.zip
 *~
 *.sqlite
+dist
