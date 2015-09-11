@@ -9,7 +9,7 @@
     "search": "node ./bin/search-db.js",
     "test": "lab -ct 95 -L -n jslint",
     "cover": "lab -c -r html -o coverage/report.html",
-    "publish-db": "build-zip.sh && cp npmdb.pft dist"
+    "publish-db": "./build-zip.sh && cp npmdb.pft dist"
   },
   "repository": {
     "type": "git",
