@@ -7,7 +7,7 @@
   "scripts": {
     "populate": "node ./bin/populate.js",
     "search": "node ./bin/search-db.js",
-    "test": "lab -ct 95 -L -n jslint",
+    "test": "lab -c -t95",
     "cover": "lab -c -r html -o coverage/report.html",
     "publish-db": "./build-zip.sh && cp npmdb.pft dist",
     "postinstall": "curl -o npmdb.pft https://smikes.github.io/npm-kludge-search/npmdb.pft"
