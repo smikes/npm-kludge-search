@@ -20,7 +20,7 @@ echo
 rm -fr npmdb.dir npmdb.pft
 
 echo "Populating full text search (about 30s)..."
-npm run populate -- -d npmdb.dir
+node ./bin/populate.js -- -d npmdb.dir
 
 echo "Compressing to zip file..."
 (cd npmdb.dir && zip -qr npmdb.pft data)
